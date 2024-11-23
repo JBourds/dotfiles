@@ -1,0 +1,21 @@
+# Set aliases so I don't need to train myself to use different names
+# for programs which do the same thing on different systems
+which nvim
+if [ $? -eq 0 ]; then
+    alias vim="nvim"
+fi
+which rg
+if [ $? -eq 0 ]; then
+    alias grep="rg"
+fi
+which bat
+if [ $? -eq 0 ]; then
+    alias cat="bat"
+fi
+
+# Aliases
+alias c="clear"
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias grep="grep --color=auto"
