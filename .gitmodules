@@ -1,3 +1,9 @@
 [submodule ".config/.config/nvim"]
 	path = .config/.config/nvim
 	url = git@github.com:JBourds/neohim.git
+[submodule ".tmux/.tmux/plugins/tpm"]
+	path = .tmux/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule ".tmux/.tmux/plugins/rose-pine"]
+	path = .tmux/.tmux/plugins/rose-pine
+	url = git@github.com:rose-pine/tmux.git
