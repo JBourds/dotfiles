@@ -119,7 +119,25 @@ fi
 # Created by `pipx` on 2024-09-04 02:43:49
 export PATH="$PATH:/home/jordan/.local/bin"
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/home/jordan/anaconda3/bin"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jordan/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jordan/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jordan/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jordan/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export SUDO_EDITOR=nvim
