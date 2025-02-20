@@ -7,3 +7,5 @@ command alias grd gdb-remote localhost:1234
 
 command alias n thread step-over
 command alias sf frame select
+
+settings set target.x86-disassembly-flavor intel
