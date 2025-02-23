@@ -1,5 +1,26 @@
+[color]
+    ui = auto
 [user]
 	email = jordanbourdeau03@gmail.com
 	name = Jordan Bourdeau
 [core]
 	editor = nvim
+[init]
+    defaultBranch = main
+# Commands should be paged rather than dumped
+[pager]
+    diff = less -+F -+X
+    log = less -+F -+X
+    show = less -+F -+X
+[alias]
+    st = status -sb
+    ci = commit
+    co = checkout
+    up = checkout @{u}
+    di = diff
+    dic = diff --cached
+    din = diff --name-status
+    diu = diff @{u}
+    br = branch
+    aa = add -A
+    
