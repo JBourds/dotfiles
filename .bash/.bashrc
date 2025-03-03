@@ -141,4 +141,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export SUDO_EDITOR=nvim
+# Change interrupt to Ctrl+x so Ctrl+c is escape in vi mode.
+stty intr ^x
 fish
