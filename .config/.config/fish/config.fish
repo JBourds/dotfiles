@@ -16,7 +16,9 @@ alias grep "grep --color=auto"
 alias diff "diff --color=auto"
 alias vim "nvim"
 
+# Use ^c for vi editing, bind ^x to interrupts instead
 fish_vi_key_bindings
+stty intr ^x
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
