@@ -33,3 +33,8 @@ else
 end
 # <<< conda initialize <<<
 
+# Immediately drop into tmux
+if status is-interactive
+and not set -q TMUX
+    exec tmux
+end
