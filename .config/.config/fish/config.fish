@@ -14,6 +14,7 @@ alias ll 'ls -alF'
 alias la 'ls -A'
 alias grep "grep --color=auto"
 alias diff "diff --color=auto"
+alias vim "nvim"
 
 fish_vi_key_bindings
 
