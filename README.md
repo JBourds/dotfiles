@@ -1,2 +1,3 @@
 # dotfiles
-Exactly what it sounds like :)
+
+A repo containing my dotfiles/configs and documentation for myself regarding the full install/setup process.
