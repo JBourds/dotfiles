@@ -1,5 +1,7 @@
 # TMUX
 
+Install using `pacman -S tmux`.
+
 TMUS requires the [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
 to work correctly. This involves a single command:
 
