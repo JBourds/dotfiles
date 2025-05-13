@@ -122,6 +122,10 @@ sudo hwclock --systohc
 - gtk4
 - gtk-engine-murrine
 - ttf-jetbrains-mono-nerd
+- bluez
+- bluez-utils
+- blueman
+- bluetui
 
 Additional Toolchain Installs (not necessary to boot, but good to have):
 
