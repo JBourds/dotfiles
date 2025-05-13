@@ -117,6 +117,7 @@ sudo hwclock --systohc
 - hyprpolkitagent
   - add `exec-once = systemctl --user start hyprpolkitagent` and restart hyprland
   - start with `systemctl --user enable --now hyprpolkitagent.service`
+- xdg-desktop-portal-hyprland
 - qt5-wayland
 - qt6-wayland
 - gtk4
@@ -126,6 +127,7 @@ sudo hwclock --systohc
 - bluez-utils
 - blueman
 - bluetui
+- usbutils
 
 Additional Toolchain Installs (not necessary to boot, but good to have):
 
