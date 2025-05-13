@@ -45,3 +45,10 @@ find . -type f -exec sed -i 's/sway\/mode/hyprland\/submap/g' {} \;
 - Create a Hyprland systemd unit which indirectly runs the `graphical-session.target`
   Make sure this gets started as an `exec-once` in the Hyprland config prior to
   starting `waybar`.
+
+## Wallpaper
+
+Install with: `sudo pacman -S hyprpaper`
+
+Add `exec-once = systemctl --user enable --now hyprpaper.service` to the
+Hyprland config.
