@@ -1,10 +1,10 @@
 /*
 
-!/fish/
-!/nvim/
-!/hypr/
-!/wezterm/
-!/doplhinrc
 !/electron-flags.conf
-
-
+!/fish/
+!/hypr/
+!/nvim/
+!/systemd/
+!/uwsm/
+!/waybar/
+!/wezterm/
