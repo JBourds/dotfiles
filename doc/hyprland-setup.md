@@ -7,6 +7,7 @@ Install the following packages:
 - uwsm
 - swaync
 - pipewire
+- nemo
 - hyprpolkitagent
   - add `exec-once = systemctl --user start hyprpolkitagent` and restart hyprland
   - start with `systemctl --user enable --now hyprpolkitagent.service`
@@ -15,9 +16,6 @@ Install the following packages:
 - nvidia
 - nvidia-utils
 - nvidia-dkms
-- xev
-  - `sudo pacman -S xorg-xev`
-- wev
 
 ## NVIDIA Setup
 
