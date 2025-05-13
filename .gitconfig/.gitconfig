@@ -7,21 +7,25 @@
 	editor = nvim
 [init]
     defaultBranch = main
-# Commands should be paged rather than dumped
 [pager]
     diff = less -+F -+X
     log = less -+F -+X
     show = less -+F -+X
 [alias]
-    st = status -sb
-    ci = commit
-    cia = commit --amend
+    s = status -sb
+    c = commit
+    ca = commit --amend
+    # push/pop have the same first letter so use r/w for read/write instead
+    sw = stash push
+    sr = stash pop
+    r = rebase
+    rs = reset
+    rsh = reset --HARD
     co = checkout
-    up = checkout @{u}
-    di = diff
-    dic = diff --cached
-    din = diff --name-status
-    diu = diff @{u}
-    br = branch
+    d = diff
+    dc = diff --cached
+    dn = diff --name-status
+    du = diff @{u}
+    b = branch
     aa = add -A
     
