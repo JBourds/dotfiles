@@ -49,24 +49,86 @@ pacstrap installs:
 - lvm2 (add this to mkinitcpio.conf hooks)
   - Need this since we use logical volumes for root FS
 
-5. Setup WiFi:
+5. Setup WiFi (bootstrapped setup for live environment):
 
-With WPA Supplicant:
+```shell
+iwctl
+station wlan0 scan
+station wlan0 connect SSID
+```
 
-- wpa_passphrase <SSID> <PASSWORD> | sudo tee /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
-- wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
-- systemctl enable <wpa_supplicant@wlan0.service>
-- systemctl start <wpa_supplicant@wlan0.service>
-- sudo chmod 600 /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
+3. Add user:
 
-3. Add my user: `useradd -m -g users -G wheel jordan` + `passwd jordan`
+```shell
+# Add to wheel group
+useradd -m -g users -G wheel jordan
+# Change password of new user
+passwd jordan
+# Change password of root user
+```
 
 - Uncomment the `%wheel...` line in the file which appears when running `visudo`
 
-4. Update root password: `passwd`
+4. Update system time:
 
-5. Update system time:
+```shell
+sudo timedatectl set-time "YYYY:MM:DD HH:MM:SS"
+sudo timedatectl set-ntp true
+sudo hwclock --systohc
+```
 
-    - `sudo timedatectl set-time 'YYYY:MM:DD HH:MM:SS'
-    - `sudo timedatectl set-ntp true`
-    - `sudo hwclock --systohc`
+5. Install these packages (probably automate this with a script at some point):
+
+- efibootmgr
+- iw
+- wpa_supplicant
+- networkmanager
+- openssh
+- linux-headers
+- sudo
+- man
+- git
+- ripgrep
+- bat
+- neofetch
+- firefox
+- pipewire
+- pipewire-alsa
+- pipewire-audio
+- pipewire-pulse
+- wezterm
+- tmux
+- fish
+- nemo
+- vi
+- vim
+- neovim
+- mesa
+- nvidia
+- nvidia-utils
+- nvidia-dkms
+- hyprland
+- egl-wayland
+- uwsm
+- swaync
+- hyprpaper
+- waybar
+- pipewire
+- hyprpolkitagent
+  - add `exec-once = systemctl --user start hyprpolkitagent` and restart hyprland
+  - start with `systemctl --user enable --now hyprpolkitagent.service`
+- qt5-wayland
+- qt6-wayland
+- gtk4
+- gtk-engine-murrine
+- ttf-jetbrains-mono-nerd
+
+Additional Toolchain Installs (not necessary to boot, but good to have):
+
+- rust
+  - curl --proto '=https' --tlsv1.2 -sSf <https://sh.rustup.rs> | sho
+- python
+- go
+- platformio-core
+- npm
+- nodejs
