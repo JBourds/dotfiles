@@ -12,20 +12,31 @@
     log = less -+F -+X
     show = less -+F -+X
 [alias]
-    s = status -sb
+    aa = add -A
     c = commit
     ca = commit --amend
-    # push/pop have the same first letter so use r/w for read/write instead
-    sw = stash push
-    sr = stash pop
-    r = rebase
-    rs = reset
-    rsh = reset --HARD
+    cl = clone
     co = checkout
+    b = branch
     d = diff
     dc = diff --cached
     dn = diff --name-status
     du = diff @{u}
-    b = branch
-    aa = add -A
+    f = fetch
+    l = log
+    pu = push
+    pl = pull
+    s = status -sb
+    st = stash 
+    # write/read rather than push/pop to help keep the pneumonics in check
+    stw = stash push
+    str = stash pop
+    sw = switch
+    swc = switch -c
+    r = rebase
+    ra = rebase --abort
+    rc = rebase --continue
+    re = restore
+    rs = reset
+    rsh = reset --HARD
     
