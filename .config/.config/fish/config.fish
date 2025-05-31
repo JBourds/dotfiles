@@ -8,13 +8,19 @@ if type -q bat
     alias cat "bat"
 end
 
-alias c "clear"
 alias ls 'ls --color=auto'
 alias ll 'ls -alF'
 alias la 'ls -A'
 alias grep "grep --color=auto"
 alias diff "diff --color=auto"
 alias vim "nvim"
+
+# I really hate typing short words
+alias v "vim"
+alias g "git"
+alias G "git"
+alias c "clear"
+
 
 # Use ^c for vi editing, bind ^x to interrupts instead
 fish_vi_key_bindings
