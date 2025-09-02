@@ -1,11 +1,14 @@
 /*
 
 !/electron-flags.conf
-!/fish/
-!/hypr/
-!/nvim/
-!/systemd/
-!/uwsm/
-!/waybar/
-!/wezterm/
-!/aerc/
+!/fish
+!/hypr
+!/nvim
+!/systemd
+!/uwsm
+!/waybar
+!/wezterm
+!/aerc
+!/sway
+!/kanshi
+!/openconnect-sso
