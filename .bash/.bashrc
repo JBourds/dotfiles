@@ -145,5 +145,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export SUDO_EDITOR=nvim
-. "/home/jordan/.deno/env"
 . "$HOME/.cargo/env"
+
+. "$HOME/.local/bin/env"
