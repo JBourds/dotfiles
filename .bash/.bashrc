@@ -146,3 +146,4 @@ unset __conda_setup
 
 export SUDO_EDITOR=nvim
 . "/home/jordan/.deno/env"
+. "$HOME/.cargo/env"
