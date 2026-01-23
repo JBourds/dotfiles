@@ -1,3 +1,4 @@
+set -x EDITOR "nvim"
 if type -q nvim
     alias vim "nvim"
 end
