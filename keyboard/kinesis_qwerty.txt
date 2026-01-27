@@ -1,3 +1,7 @@
+# Remap Caps-Lock to ESC for short presses. Hold CAPS for 250ms to toggle caps-lock -----
+[caps]>[escape]
+
+
 # Easier to reach home
 [home]>[rwin]
 
@@ -10,18 +14,18 @@
 # Above Home Row
 
 ## Left
-{kp-Q}>{s9}{-lshift}{1}{+lshift}
-{kp-W}>{s9}{-lshift}{2}{+lshift}
-{kp-E}>{s9}{-lshift}{3}{+lshift}
-{kp-R}>{s9}{-lshift}{4}{+lshift}
-{kp-T}>{s9}{-lshift}{5}{+lshift}
+{kp-Q}>{speed9}{-lshift}{1}{+lshift}
+{kp-W}>{speed9}{-lshift}{2}{+lshift}
+{kp-E}>{speed9}{-lshift}{3}{+lshift}
+{kp-R}>{speed9}{-lshift}{4}{+lshift}
+{kp-T}>{speed9}{-lshift}{5}{+lshift}
 
 ## Right
-{kp-Y}>{s9}{-lshift}{6}{+lshift}
-{kp7}>{s9}{-lshift}{7}{+lshift}
-{kp8}>{s9}{-lshift}{8}{+lshift}
-{kp9}>{s9}{-lshift}{9}{+lshift}
-{kpmin}>{s9}{-lshift}{0}{+lshift}
+{kp-Y}>{speed9}{-lshift}{6}{+lshift}
+{kp7}>{speed9}{-lshift}{7}{+lshift}
+{kp8}>{speed9}{-lshift}{8}{+lshift}
+{kp9}>{speed9}{-lshift}{9}{+lshift}
+{kpmin}>{speed9}{-lshift}{0}{+lshift}
 
 # Home Row
 [kp-A]>[1]
@@ -39,14 +43,14 @@
 
 ## Right
 [kp-N]>[=]
-{kp1}>{s9}{-lshift}{=}{+lshift}
+{kp1}>{speed9}{-lshift}{=}{+lshift}
 [kp2]>[obrack]
 [kp3]>[cbrack]
-{kp-\}>{s9}{-lshift}{obrack}{+lshift}
-{kp-'}>{s9}{-lshift}{cbrack}{+lshift}
+{kp-\}>{speed9}{-lshift}{obrack}{+lshift}
+{kp-'}>{speed9}{-lshift}{cbrack}{+lshift}
 
 ## Left
 [kp-B]>[hyphen]
-{kp-V}>{s9}{-lshift}{hyphen}{+lshift}
-{kp-C}>{s9}{-lshift}{`}{+lshift}
+{kp-V}>{speed9}{-lshift}{hyphen}{+lshift}
+{kp-C}>{speed9}{-lshift}{`}{+lshift}
 [kp-X]>[`]
