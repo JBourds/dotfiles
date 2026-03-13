@@ -22,6 +22,7 @@ alias g "git"
 alias G "git"
 alias c "clear"
 
+alias gdb='gdb --tui'
 
 # Use ^c for vi editing, bind ^x to interrupts instead
 fish_vi_key_bindings
