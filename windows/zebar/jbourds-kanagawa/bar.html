@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script
+      src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"
+      integrity="sha256-aS0B0wnsaDByLfE16h4MDCP1fQFccysd1YWOcV+gbBo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+      import React, { useEffect, useState } from 'https://esm.sh/react@18?dev';
+      import { createRoot } from 'https://esm.sh/react-dom@18/client?dev';
+      import * as zebar from 'https://esm.sh/zebar@3.0';
+
+      const providers = zebar.createProviderGroup({
+        glazewm: { type: 'glazewm' },
+        network: { type: 'network' },
+        cpu: { type: 'cpu' },
+        memory: { type: 'memory' },
+        battery: { type: 'battery' },
+        audio: { type: 'audio' },
+        media: { type: 'media' },
+        date: { type: 'date', formatting: 'EEE d MMM  HH:mm' },
+      });
+
+      function networkIcon(network) {
+        const type = network?.defaultInterface?.type;
+        const strength = network?.defaultGateway?.signalStrength ?? 0;
+        if (type === 'ethernet') return 'nf-md-ethernet_cable';
+        if (type === 'proprietary_virtual') return 'nf-md-shield_lock_outline';
+        if (type === 'wifi') {
+          if (strength >= 80) return 'nf-md-wifi_strength_4';
+          if (strength >= 65) return 'nf-md-wifi_strength_3';
+          if (strength >= 40) return 'nf-md-wifi_strength_2';
+          if (strength >= 25) return 'nf-md-wifi_strength_1';
+          return 'nf-md-wifi_strength_outline';
+        }
+        return 'nf-md-wifi_strength_off_outline';
+      }
+
+      function batteryIcon(battery) {
+        const charge = battery?.chargePercent ?? 0;
+        if (battery?.isCharging) return 'nf-md-power_plug';
+        if (charge > 90) return 'nf-fa-battery_4';
+        if (charge > 70) return 'nf-fa-battery_3';
+        if (charge > 40) return 'nf-fa-battery_2';
+        if (charge > 20) return 'nf-fa-battery_1';
+        return 'nf-fa-battery_0';
+      }
+
+      function getFocusedTitle(glazewm) {
+        const focused = glazewm?.focusedContainer;
+        const candidates = [
+          focused?.title,
+          focused?.window?.title,
+          focused?.name,
+          glazewm?.focusedWorkspace?.displayName,
+          glazewm?.focusedWorkspace?.name,
+        ].filter(Boolean);
+        return candidates[0] ?? '';
+      }
+
+      function App() {
+        const [output, setOutput] = useState(providers.outputMap);
+
+        useEffect(() => {
+          providers.onOutput(() => setOutput({ ...providers.outputMap }));
+        }, []);
+
+        const glazewm = output.glazewm;
+        const media = output.media?.currentSession;
+        const volume = output.audio?.defaultPlaybackDevice?.volume;
+        const muted = output.audio?.defaultPlaybackDevice?.isMuted;
+        const title = getFocusedTitle(glazewm);
+
+        return (
+          <div className="bar">
+            <div className="left">
+              <i className="logo nf nf-fa-windows"></i>
+
+              {glazewm && (
+                <div className="workspaces">
+                  {glazewm.currentWorkspaces.map(workspace => (
+                    <button
+                      className={`workspace ${workspace.isDisplayed ? 'displayed' : ''} ${workspace.hasFocus ? 'focused' : ''}`}
+                      key={workspace.name}
+                      onClick={() => glazewm.runCommand(`focus --workspace ${workspace.name}`)}
+                    >
+                      {workspace.displayName ?? workspace.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {glazewm?.bindingModes?.map(mode => (
+                <button
+                  className="mode"
+                  key={mode.name}
+                  onClick={() => glazewm.runCommand(`wm-disable-binding-mode --name ${mode.name}`)}
+                >
+                  {mode.displayName ?? mode.name}
+                </button>
+              ))}
+            </div>
+
+            <div className="center">
+              <span className="window-title">{title}</span>
+            </div>
+
+            <div className="right">
+              {media && (
+                <button className="media" onClick={() => output.media.togglePlayPause()}>
+                  <i className={`nf ${media.isPlaying ? 'nf-md-pause' : 'nf-md-play'}`}></i>
+                  <span className="media-text">
+                    {[media.artist, media.title].filter(Boolean).join(' - ')}
+                  </span>
+                </button>
+              )}
+
+              {glazewm?.isPaused && (
+                <button className="paused" onClick={() => glazewm.runCommand('wm-toggle-pause')}>paused</button>
+              )}
+
+              {glazewm && (
+                <button className="direction" onClick={() => glazewm.runCommand('toggle-tiling-direction')}>
+                  <i className={`nf ${glazewm.tilingDirection === 'horizontal' ? 'nf-md-swap_horizontal' : 'nf-md-swap_vertical'}`}></i>
+                </button>
+              )}
+
+              {output.network && (
+                <span className="metric">
+                  <i className={`nf ${networkIcon(output.network)}`}></i>
+                  {output.network.defaultGateway?.ssid ?? output.network.defaultInterface?.name ?? 'net'}
+                </span>
+              )}
+
+              {typeof volume === 'number' && (
+                <span className="metric">
+                  <i className={`nf ${muted ? 'nf-md-volume_off' : 'nf-md-volume_high'}`}></i>
+                  {Math.round(volume)}%
+                </span>
+              )}
+
+              {output.cpu && (
+                <span className={`metric ${output.cpu.usage > 85 ? 'critical' : ''}`}>
+                  <i className="nf nf-oct-cpu"></i>
+                  {Math.round(output.cpu.usage)}%
+                </span>
+              )}
+
+              {output.memory && (
+                <span className="metric">
+                  <i className="nf nf-fae-chip"></i>
+                  {Math.round(output.memory.usage)}%
+                </span>
+              )}
+
+              {output.battery && (
+                <span className="metric">
+                  <i className={`nf ${batteryIcon(output.battery)}`}></i>
+                  {Math.round(output.battery.chargePercent)}%
+                </span>
+              )}
+
+              <span className="metric date">{output.date?.formatted}</span>
+            </div>
+          </div>
+        );
+      }
+
+      createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
