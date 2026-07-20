@@ -1,5 +1,4 @@
 general:
-  focus_follows_cursor: true
   startup_commands:
     - "shell-exec zebar"
 
@@ -7,7 +6,7 @@ gaps:
   scale_with_dpi: true
   inner_gap: "2px"
   outer_gap:
-    top: "8px"
+    top: "28px"
     left: "8px"
     right: "8px"
     bottom: "8px"
@@ -17,6 +16,20 @@ window_effects:
     border:
       enabled: true
       color: "#7aa2f7"
+  other_windows:
+    border:
+      enabled: true
+      color: "#a1a1a1"
+
+window_behavior:
+  initial_state: "tiling"
+  state_defaults:
+    floating:
+      centered: true
+      shown_on_top: false
+    fullscreen:
+      maximized: false
+      shown_on_top: false
 
 workspaces:
   - name: "1"
@@ -33,6 +46,48 @@ workspaces:
   - name: "8"
   - name: "9"
 
+window_rules:
+  - commands: ["ignore"]
+    match:
+      - window_process: { equals: "zebar" }
+    on: ["manage"]
+    run_once: true
+
+binding_modes:
+  - name: resize
+    keybindings:
+      - commands: ["resize --width -2%"]
+        bindings: ["h", "left"]
+
+      - commands: ["resize --width +2%"]
+        bindings: ["l", "right"]
+
+      - commands: ["resize --height +2%"]
+        bindings: ["k", "up"]
+
+      - commands: ["resize --height -2%"]
+        bindings: ["j", "down"]
+
+      - commands: ["wm-disable-binding-mode --name resize"]
+        bindings: ["escape", "enter", "alt+r"]
+
+  - name: move
+    keybindings:
+      - commands: ["move --direction left"]
+        bindings: ["h"]
+
+      - commands: ["move --direction down"]
+        bindings: ["j"]
+
+      - commands: ["move --direction up"]
+        bindings: ["k"]
+
+      - commands: ["move --direction right"]
+        bindings: ["l"]
+
+      - commands: ["wm-disable-binding-mode --name move"]
+        bindings: ["escape", "enter"]
+
 keybindings:
   - commands: ["shell-exec wezterm-gui.exe"]
     bindings: ["alt+q"]
@@ -46,11 +101,8 @@ keybindings:
   - commands: ["toggle-fullscreen"]
     bindings: ["alt+shift+u"]
 
-  - commands: ["toggle-floating"]
-    bindings: ["alt+shift+space"]
-
   - commands: ["toggle-floating --centered"]
-    bindings: ["alt+c"]
+    bindings: ["alt+shift+space"]
 
   - commands: ["wm-reload-config"]
     bindings: ["alt+shift+r"]
@@ -74,16 +126,16 @@ keybindings:
     bindings: ["alt+l", "alt+right"]
 
   - commands: ["move --direction left"]
-    bindings: ["alt+shift+h"]
+    bindings: ["alt+shift+h", "alt+shift+left"]
 
   - commands: ["move --direction down"]
-    bindings: ["alt+shift+j"]
+    bindings: ["alt+shift+j", "alt+shift+down"]
 
   - commands: ["move --direction up"]
-    bindings: ["alt+shift+k"]
+    bindings: ["alt+shift+k", "alt+shift+up"]
 
   - commands: ["move --direction right"]
-    bindings: ["alt+shift+l"]
+    bindings: ["alt+shift+l", "alt+shift+right"]
 
   - commands: ["focus --workspace 1"]
     bindings: ["alt+1"]
@@ -138,64 +190,3 @@ keybindings:
 
   - commands: ["move --workspace 9", "focus --workspace 9"]
     bindings: ["alt+shift+9"]
-
-binding_modes:
-  - name: resize
-    keybindings:
-      - commands: ["resize --width -2%"]
-        bindings: ["h"]
-
-      - commands: ["resize --width +2%"]
-        bindings: ["l"]
-
-      - commands: ["resize --height +2%"]
-        bindings: ["k"]
-
-      - commands: ["resize --height -2%"]
-        bindings: ["j"]
-
-      - commands: ["wm-disable-binding-mode --name resize"]
-        bindings: ["escape", "enter"]
-
-  - name: move
-    keybindings:
-      - commands: ["move --direction left"]
-        bindings: ["h"]
-
-      - commands: ["move --direction down"]
-        bindings: ["j"]
-
-      - commands: ["move --direction up"]
-        bindings: ["k"]
-
-      - commands: ["move --direction right"]
-        bindings: ["l"]
-
-      - commands: ["wm-disable-binding-mode --name move"]
-        bindings: ["escape", "enter"]
-
-window_rules:
-  - commands:
-      - ignore
-    match:
-      - window_process: { equals: "zebar" }
-
-  - commands:
-      - move --workspace 1
-    match:
-      - process: "olk.exe"
-
-  - commands:
-      - move --workspace 2
-    match:
-      - process: "ms-teams.exe"
-
-  - commands:
-      - move --workspace 3
-    match:
-      - process: "wezterm-gui.exe"
-
-  - commands:
-      - move --workspace 4
-    match:
-      - process: "firefox.exe"
