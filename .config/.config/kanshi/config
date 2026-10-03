@@ -3,7 +3,7 @@ profile uvm_office {
   output "Dell Inc. DELL 2405FPW T61336434LCS" enable
 }
 profile home_office {
-  output eDP-1 enable
+  output eDP-1 disable
   output DP-1 enable
 }
 profile laptop {
